@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+    <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/comment.css" />
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-9">
+        <p class="pull-right visible-xs">
+            <button class="btn-xs btn btn-info">目录已隐藏</button>
+        </p>
+        <header>
+            <div class="module">
+                <h2 class="article-title"> {{ blog.title }} </h2>
+            </div>
+            <p class="meta"> Posted on {{ blog.created|date:"Y-m-d" }}</p>
+            <span class="octicon octicon-file-submodule"></span>
+              <a href="{% url 'category' blog.catagory.pk %}">{{blog.catagory.name}}</a>
+            {% for tag in blog.tags.all %}
+              &nbsp;&nbsp;<span class="octicon octicon-tag"></span>
+              <a href="/tag/#{{tag.name}}">{{ tag.name }}</a>
+            {% endfor %}
+        </header>
+        <hr class="boundary">
+        <p> {{blog.abstract}}</p><br>
+        <p> {{blog.content|safe}}</p>
+        <hr class="boundary">
+        {% include 'share.html' %}
+        {% include 'comment.html' %}
+    </div> <!-- end col -->
+    <div class="col-sm-3">{{blog.toc|safe}}</div>
+    </div> <!-- end row -->
+    </div><!-- end container -->
+
+{% endblock %}

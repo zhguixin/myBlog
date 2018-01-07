@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+
+    {% load paginate_tags %}
+    {% paginate blogs 5 %}
+
+    {% for blog in blogs %}
+    <div class="main">
+    <div class="container">
+        <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
+        <article>
+            <p class="meta">
+                <span class="octicon octicon-clock"></span> Posted on {{ blog.created|date:"Y-m-d" }}
+            </p>
+            <div class="module">
+                <a class="title" href="{{blog.get_absolute_url}}"> {{ blog.title }}</a>
+                <p>{{ blog.abstract }}</p>
+                <footer class="blog-footer">
+                    <span class="octicon octicon-person"></span>&nbsp;&nbsp;<b>Author:</b>&nbsp;&nbsp;
+                        <a href="/about/">{{ blog.author }}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="octicon octicon-tag"></span>&nbsp;&nbsp;<b>Tags:</b>
+                    {% for tag in blog.tags.all %}
+                    &nbsp;<a href="/tag/#{{tag.name}}">{{ tag.name }}</a>
+                    {% endfor %}
+                </footer>
+            </div>
+        </article>
+    </div>
+    </div>
+    {% endfor %}
+
+    {% include 'pagination.html' %}
+
+{% endblock %}

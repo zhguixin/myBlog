@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<div class="container">
+    <br>
+    {{ info|safe}}
+    
+    <div class="rss">
+      <a href="{% url 'rss' %}"><span class="octicon octicon-rss"></span> RSS 订阅</a>
+    </div>
+</div>
+{% endblock %}

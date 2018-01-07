@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+
+{% load get_tags %}
+<div class="main">
+    <div class="container">
+    <link rel="stylesheet" type="text/css" href="/static/css/tag.css" />
+      <header><h1>Tag</h1></header>
+      <hr>
+      {% get_tags as tag_list %}
+      <ul class="tag-box inline">
+        {% for tag in tag_list %}
+        <li>
+          <a href="#{{tag.name}}">{{ tag.name }}<span>({{ tag.num_blogs }})</span></a>
+        </li>
+        {% empty %}
+        暂无标签！
+        {% endfor %}
+      </ul>
+
+      {% for tag in tag_list %}
+        <header><h3 id="{{tag.name}}">{{ tag.name }}</h3></header>
+        {% get_blogs_by_tag tag.pk as blogs%}
+        <ul>
+          {% for blog in blogs %}
+            <li>
+              <span>{{ blog.created|date:"Y-m-d" }}</span>&nbsp;>>&nbsp;
+              <a href="{{blog.get_absolute_url}}">{{blog.title}}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

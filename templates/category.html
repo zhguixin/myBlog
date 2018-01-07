@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+<link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
+{% load get_category %}
+
+<div class="main">
+    <header><h1>Archive</h1></header>
+    <hr>
+    {% get_category as category_list %}
+    <ul>
+        {% for category in category_list %}
+        <li>
+          <a href="{% url 'category' category.pk %}">{{ category.name }}<span>({{ category.num_blogs }})</span></a>
+        </li>
+        {% empty %}
+          暂无归档
+        {% endfor %}
+    </ul>
+
+    {% for blog in blogs %}
+    <div class="container">
+        <article>
+            <span class="octicon octicon-calendar"></span> &nbsp;&nbsp;{{ blog.created|date:"Y-m-d" }}
+            <div class="module">
+                <a class="title" href="{{blog.get_absolute_url}}"> {{ blog.title }}</a>
+                <footer class="blog-footer">
+                    <span class="octicon octicon-file-submodule"></span>&nbsp;&nbsp;<b>Archive:</b>&nbsp;&nbsp;
+                      <a href="/category/">{{ blog.catagory.name }}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="octicon octicon-tag"></span>&nbsp;&nbsp;<b>Tags:</b>
+                    {% for tag in blog.tags.all %}
+                      &nbsp;<a href="/tag/#{{tag.name}}">{{ tag.name }}</a>
+                    {% endfor %}
+                     &nbsp;&nbsp;&nbsp;&nbsp;<span class="octicon octicon-comment"></span>&nbsp;&nbsp;<b>Comments:</b>
+                     &nbsp;&nbsp;<a href="{{blog.get_absolute_url}}#comment-area">{% get_comments_by_blog blog.pk as comments %} {{ comments | length}}</a>
+                </footer>
+            </div>
+        </article>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
