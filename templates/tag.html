@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 
 {% block mainbody %}
-
 {% load get_tags %}
-<div class="main">
-    <div class="container">
-    <link rel="stylesheet" type="text/css" href="/static/css/tag.css" />
-      <header><h1>Tag</h1></header>
-      <hr>
+<link rel="stylesheet" type="text/css" href="/static/css/tag.css" />
+<div class="container">
+    <div class="main">
       {% get_tags as tag_list %}
       <ul class="tag-box inline">
         {% for tag in tag_list %}

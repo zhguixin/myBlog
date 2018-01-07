@@ -4,22 +4,27 @@
 <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
 {% load get_category %}
 
-<div class="main">
-    <header><h1>Archive</h1></header>
-    <hr>
-    {% get_category as category_list %}
-    <ul>
-        {% for category in category_list %}
-        <li>
-          <a href="{% url 'category' category.pk %}">{{ category.name }}<span>({{ category.num_blogs }})</span></a>
-        </li>
-        {% empty %}
-          暂无归档
-        {% endfor %}
-    </ul>
+<div class="container">
+  <div class="main">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span class="octicon octicon-list-unordered"></span>&nbsp;Categories
+            <span class="caret"></span>
+        </button>
+        {% get_category as category_list %}
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            {% for category in category_list %}
+            <li>
+              <a  class="categories-item" href="{% url 'category' category.pk %}">{{ category.name }}
+                <span class="categories-badge">({{ category.num_blogs }})</span></a>
+            </li>
+            {% empty %}
+              暂无归档
+            {% endfor %}
+        </ul>
+    </div> <!-- end dropdown -->
 
     {% for blog in blogs %}
-    <div class="container">
         <article>
             <span class="octicon octicon-calendar"></span> &nbsp;&nbsp;{{ blog.created|date:"Y-m-d" }}
             <div class="module">
@@ -36,9 +41,9 @@
                 </footer>
             </div>
         </article>
-    </div>
     {% endfor %}
-
-</div>
+    
+    </div> <!-- end container -->
+</div> <!-- end main -->
 
 {% endblock %}

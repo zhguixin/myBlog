@@ -10,3 +10,11 @@ $('#myBlog').on('click', function (e) {
         scrollTop: 0
     }, 700);
 });
+
+function openNav() {
+    document.getElementById("mySidenav").style.width = "150px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
