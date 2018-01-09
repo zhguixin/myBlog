@@ -2,33 +2,45 @@
 
 {% block mainbody %}
 {% load get_tags %}
-<link rel="stylesheet" type="text/css" href="/static/css/tag.css" />
 <div class="container">
-    <div class="main">
       {% get_tags as tag_list %}
-      <ul class="tag-box inline">
-        {% for tag in tag_list %}
-        <li>
-          <a href="#{{tag.name}}">{{ tag.name }}<span>({{ tag.num_blogs }})</span></a>
-        </li>
-        {% empty %}
-        暂无标签！
-        {% endfor %}
-      </ul>
 
-      {% for tag in tag_list %}
-        <header><h3 id="{{tag.name}}">{{ tag.name }}</h3></header>
-        {% get_blogs_by_tag tag.pk as blogs%}
-        <ul>
-          {% for blog in blogs %}
-            <li>
-              <span>{{ blog.created|date:"Y-m-d" }}</span>&nbsp;>>&nbsp;
-              <a href="{{blog.get_absolute_url}}">{{blog.title}}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endfor %}
-    </div>
-</div>
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="collapse-btn">
+             <button id="openAll" type="button" class="btn pull-right btn-warning btn-default">全部展开</button>
+             <button id="closeAll" type="button" class="btn pull-right btn-default btn-info">全部收缩</button>
+           </div>
+        </div>
+      </div>
+      <hr>
+
+    <div class="row clearfix">
+    {% for tag in tag_list %}
+        <div class="col-md-6 column">
+            <!-- collapse panel -->
+            <div class="panel panel-default"> <!-- panel-default -->
+                <div class="panel-heading">
+                     <h3 id="{{tag.name}}" class="panel-title"><a data-toggle="collapse" style="color:#0099ff"
+                     href="#{{tag.pk}}">{{ tag.name }}</a>&nbsp;<span>({{ tag.num_blogs }})</span></h3>
+                </div>
+                <div id="{{tag.pk}}" class="panel-collapse in">
+                    <div class="panel-body">
+                        {% get_blogs_by_tag tag.pk as blogs%}
+                        <ul>
+                          {% for blog in blogs %}
+                            <li>
+                              <span>{{ blog.created|date:"Y-m-d" }}</span>&nbsp;>>&nbsp;
+                              <a href="{{blog.get_absolute_url}}">{{blog.title}}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- end panel -->
+        </div> <!-- end column -->
+    {% endfor %}
+    </div> <!-- end row -->
+</div> <!-- end container -->
 
 {% endblock %}
