@@ -6,9 +6,9 @@
     {% paginate blogs 5 %}
 
     {% for blog in blogs %}
+    <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
     <div class="container">
     <div class="main">
-        <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
         <article>
             <p class="meta">
                 <span class="octicon octicon-clock"></span> Posted on {{ blog.created|date:"Y-m-d" }}
