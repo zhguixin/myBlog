@@ -26,6 +26,10 @@ body {
     position: fixed;
 }
 
+.small_screen_toc {
+    margin-top: 20px;
+}
+
 .rectangle{
     border-radius: 0px;
 }
@@ -41,6 +45,7 @@ body {
 .footer p {
     color: #c5c5c5;
 }
+.fixed-bottom {position: fixed;bottom: 0;width:100%;}
 
 /**
   返回顶部
