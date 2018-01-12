@@ -35,3 +35,4 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Catagory, CatagoryAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Comment)
