@@ -32,7 +32,10 @@ class CatagoryAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'created')
+
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Catagory, CatagoryAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment, CommentAdmin)
