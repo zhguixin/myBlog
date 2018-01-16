@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
-{% block mainbody %}
+{% block title %} {{ blog.title }}{% endblock title %}
+
+{% block css %}
     <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
     <link rel="stylesheet" type="text/css" href="/static/css/comment.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/vs.css" >
+{% endblock css %}
+
+{% block mainbody %}
     <div class="container">
     <div class="row">
     <div class="col-sm-9">

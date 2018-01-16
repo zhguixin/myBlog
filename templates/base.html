@@ -4,15 +4,19 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>zhguixin</title>
+<title>{% block title %}zhguixin{% endblock title %}</title>
 <link rel="shortcut icon" href="/static/img/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/static/css/style.css" >
-<link rel="stylesheet" type="text/css" href="/static/css/vs.css" >
 <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.bootcss.com/octicons/3.5.0/octicons.min.css" >
+{% block css %}
+{% endblock css %}
 <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <script type="text/javascript" src="/static/js/page.js"></script>
+{% block js %}
+{% endblock js %}
 <style>
 body {
     /*padding-top: 40px; 不固定顶部导航栏不需要此属性*/

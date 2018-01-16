@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
+    {% endblock css %}
+
 {% block mainbody %}
 
     {% load paginate_tags %}
     {% paginate blogs 5 %}
 
     {% for blog in blogs %}
-    <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
     <div class="container">
     <div class="main">
         <article>
