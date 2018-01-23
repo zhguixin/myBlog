@@ -42,7 +42,7 @@
                       &nbsp;<a href="/tag/#{{tag.name}}">{{ tag.name }}</a>
                     {% endfor %}
                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="octicon octicon-comment"></span>&nbsp;&nbsp;<b>Comments:</b>
-                     &nbsp;&nbsp;<a href="{{blog.get_absolute_url}}#comment-area">{% get_comments_by_blog blog.pk as comments %} {{ comments | length}}</a>
+                     &nbsp;&nbsp;<a href="{{blog.get_absolute_url}}#comment-area">{{ blog.comment_set.count }}</a>
                 </footer>
             </div>
         </article>

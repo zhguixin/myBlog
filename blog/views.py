@@ -15,7 +15,7 @@ pip install Pygments
 '''
 # Create your views here.
 def index(request):
-    blogs = Blog.objects.all().order_by('-created')
+    blogs = Blog.objects.all()
     return render(request, 'index.html', {'blogs':blogs})
 
 def detail(request, pk):
@@ -33,7 +33,7 @@ def detail(request, pk):
     # 博客详情页加入评论
     form = CommentForm()
     # 该语句等价于：Comment.objects.filter(blog=blog)，获取该blog下的所有评论
-    comment_list = blog.comment_set.all().order_by('-created')
+    comment_list = blog.comment_set.all()
     # 将博客、表单、评论作为模板变量提供给 detail.html 模板以供渲染
     context = {'blog': blog,
            'form': form,
@@ -42,13 +42,13 @@ def detail(request, pk):
     return render(request, 'detail.html', context=context)
 
 def kind(request):
-    blogs = Blog.objects.all().order_by('-created')
+    blogs = Blog.objects.all()
     return render(request, 'category.html', {'blogs':blogs})
 
 # 数据库分类对应的表名是：Catagory
 def category(request, pk):
     cate = get_object_or_404(Catagory, pk=pk)
-    blogs = Blog.objects.filter(catagory=cate).order_by('-created')
+    blogs = Blog.objects.filter(catagory=cate)
     return render(request, 'category.html', {'blogs':blogs})
 
 # tag页面通过设置锚点的方式实现页内跳转到指定标签字段
@@ -82,7 +82,7 @@ def blog_comment(request, blog_pk):
             Comment.objects.create(**cleaned_data)
             return redirect(blog)
     else:
-        comment_list = blog.comment_set.all().order_by('-created')
+        comment_list = blog.comment_set.all()
         context = {'blog': blog,
            'form': form,
            'comment_list': comment_list

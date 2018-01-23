@@ -46,6 +46,9 @@ class Blog(models.Model):
     catagory = models.ForeignKey(Catagory,verbose_name=u'分类', default= '')
     tags = models.ManyToManyField(Tag,verbose_name=u'标签', default='')
 
+    class Meta:
+        ordering = ['-created', 'title']
+
     def __unicode__(self):
         return self.title
 
@@ -63,6 +66,9 @@ class Comment(models.Model):
     email = models.EmailField(u'邮箱')
     content = models.CharField(u'内容',max_length=240)
     created = models.DateTimeField(u'发布时间',auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __unicode__(self):
         return self.name
