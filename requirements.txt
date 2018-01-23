@@ -1,0 +1,12 @@
+beautifulsoup4==4.6.0
+Django==1.9
+easy-thumbnails==2.5
+html5lib==0.999
+lxml==3.7.3
+Markdown==2.6.11
+numpy==1.12.1
+numpydoc==0.6.0
+pandas==0.20.1
+Pillow==4.1.1
+requests==2.14.2
+
