@@ -9,5 +9,9 @@
     <div class="rss">
       <a href="{% url 'rss' %}"><span class="octicon octicon-rss"></span> RSS 订阅</a>
     </div>
+    <div class="rss">
+      <a href="{% url 'users:gallery' %}" onclick="window.open(this.href);return false;">
+        <span class="octicon octicon-sign-in"></span>了解更多</a>
+    </div>
 </div>
 {% endblock %}

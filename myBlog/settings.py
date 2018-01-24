@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'personal',
+    'easy_thumbnails',
 ]
 
 # 1.10之前，中间件的key为MIDDLEWARE_CLASSES, 1.10之后，为MIDDLEWARE
@@ -107,8 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
+# en-us:英语环境
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -118,9 +120,37 @@ USE_L10N = True
 
 USE_TZ = False
 
+# 通过 AUTH_USER_MODEL 指定自定义用户模型所在的位置
+AUTH_USER_MODEL = 'personal.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
+# 七牛云存储相关配置 pip install django-qiniu-storage
+QINIU_ACCESS_KEY = 'y8_ShQVjyL9IB2hebzp2HnD0PYvZfqxcGRWP0Ev7'
+QINIU_SECRET_KEY = '59Pf8MxWLnLAfzqJdZGRpLZdXnjl4Bets-212d0T'
+QINIU_BUCKET_NAME = 'wj5633'
+QINIU_BUCKET_DOMAIN = 'ompehspge.bkt.clouddn.com/'
+QINIU_SECURE_URL = False      # 使用http 
+
+PREFIX_URL = 'http://'
+
+# MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+
+# DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage' 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_URL = '/'
+IMAGE_PREFIX = 'gallery'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+
+# 配置缩略图大小，方便在模板中使用
+THUMBNAIL_ALIASES = {
+  '': {
+    'thumbnail' : {'size': (150,150), 'crop':True},
+  },
+}

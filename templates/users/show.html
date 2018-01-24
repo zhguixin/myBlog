@@ -1,0 +1,44 @@
+
+<p> <b>在我看来，某个东西你不把它拍下来就不能说你见过。——艾米丽·佐拉 </b></p>
+
+{% load thumbnail %}
+{% load get_gallery_category %}
+
+<h3>风景照<span>(5)</span></h3>
+<div>
+  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+    <img class="gallery-image" data-original="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" alt=""/></a>
+  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-4.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard.">
+    <img class="gallery-image" data-original="http://lokeshdhakar.com/projects/lightbox2/images/thumb-4.jpg" alt="" /></a>
+  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-5.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing.">
+    <img class="gallery-image" data-original="http://lokeshdhakar.com/projects/lightbox2/images/thumb-5.jpg" alt="" /></a>
+  <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close.">
+    <img class="gallery-image" data-original="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" /></a>
+  <a href="/static/img/blog_img.jpg" data-lightbox="example-set" data-title="安静的阅读">
+    <img class="gallery-image" data-original="/static/img/blog_img.jpg" alt="" /></a>
+</div>
+
+{% for category in cates %}
+{% get_images_by_category category.pk as images %}
+<hr>
+<h3>{{ category.name }} <span>({{images | length}})</span> </h3>
+  <div>
+    {% for img in images %}
+      <a href="/static/{{ img.original }}" data-lightbox="{{ category.name }}" data-title="{{img.description}}">
+        <img class="gallery-image" data-original="/static/{{ img.original.thumbnail.url }}" alt="" /></a>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+<script>
+    lightbox.option({
+      // 'resizeDuration': 200,
+      // 'wrapAround': true,
+      'albumLabel': "第 %1 张/共 %2 张"
+    })
+    $(function() {
+        $("img.gallery-image").lazyload({
+            effect : "fadeIn"
+        });
+    });
+</script>

@@ -15,7 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.contrib.auth import urls as auth_urls
+from personal import urls as self_urls
 from blog import views
 from blog import feeds
 
@@ -42,4 +44,7 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^comment/blog/(?P<blog_pk>[0-9]+)/$', views.blog_comment, name='blog_comment'),
     url(r'^all/rss/$', feeds.AllBlogsRssFeed(), name='rss'),
+    # 将 auth 应用中的 urls 模块包含进来,默认的登录视图函数渲染的是 registration/login.html 模板
+    url(r'^users/', include(auth_urls)),
+    url(r'^users/', include(self_urls, namespace='users')),
 ]

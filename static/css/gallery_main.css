@@ -1,0 +1,80 @@
+.snowRoll { 
+    position: absolute; 
+    opacity: 0; 
+    -webkit-animation-name: mysnow; 
+    -webkit-animation-duration: 20s; 
+    -moz-animation-name: mysnow; 
+    -moz-animation-duration: 20s; 
+    height: 80px; 
+}
+@-webkit-keyframes mysnow {  
+    0% {
+     bottom: 100%;
+    }
+     50% {
+     -webkit-transform: rotate(1080deg);
+    }
+     100% {
+     -webkit-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+    }
+}
+@-moz-keyframes mysnow {  
+    0% {
+     bottom: 100%;
+    }
+     50% {
+     -moz-transform: rotate(1080deg);
+    }
+     100% {
+     -moz-transform: rotate(0deg) translate3d(50px, 50px, 50px);
+    }
+}
+
+/* 缩略图样式 */
+.gallery-image {
+    width: 150px;
+    height: 150px;
+    border-radius:5px;
+    border:thin solid #999;
+    margin-bottom: 5px;
+}
+
+/* 顶部进度条样式配置 */
+.pace .pace-progress {
+    background: #1E92FB; /*进度条颜色*/
+    height: 3px;
+}
+.pace .pace-progress-inner {
+     box-shadow: 0 0 10px #1E92FB, 0 0 5px #1E92FB; /*阴影颜色*/
+}
+.pace .pace-activity {
+    border-top-color: #1E92FB;    /*上边框颜色*/
+    border-left-color: #1E92FB;    /*左边框颜色*/
+}
+
+/**
+  返回顶部
+*/
+/*#back-to-top
+{
+    position:        fixed;
+    bottom:          40px;
+    right:           40px;
+    z-index:         9999;
+    width:           32px;
+    height:          32px;
+    text-align:      center;
+    font-size:       24px;
+    line-height:     30px;
+    cursor:          pointer;
+    border:          0;
+    border-radius:   2px;
+    text-decoration: none;
+    transition:      opacity 0.2s ease-out;
+    opacity:         0;
+    transition:      all .3s;
+}
+#back-to-top.show
+{
+    opacity: 1;
+}*/
