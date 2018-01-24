@@ -24,8 +24,8 @@
 <h3>{{ category.name }} <span>({{images | length}})</span> </h3>
   <div>
     {% for img in images %}
-      <a href="/static/{{ img.original }}" data-lightbox="{{ category.name }}" data-title="{{img.description}}">
-        <img class="gallery-image" data-original="/static/{{ img.original.thumbnail.url }}" alt="" /></a>
+      <a href="{{ img.original.url }}" data-lightbox="{{ category.name }}" data-title="{{img.description}}">
+        <img class="gallery-image" data-original="{{ img.original.thumbnail.url }}" alt="" /></a>
     {% endfor %}
   </div>
 {% endfor %}

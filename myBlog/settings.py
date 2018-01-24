@@ -136,12 +136,12 @@ QINIU_SECURE_URL = False      # 使用http
 PREFIX_URL = 'http://'
 
 # MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\','/')
 
 # DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage' 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_URL = '/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\','/')
 IMAGE_PREFIX = 'gallery'
 
 STATIC_URL = '/static/'
