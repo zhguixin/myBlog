@@ -138,3 +138,6 @@ section.category-slice{
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.MathJax_Display{overflow-x:auto;overflow-y:hidden;}
+.MathJax{outline:0;}

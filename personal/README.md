@@ -7,7 +7,7 @@
 - 引入[LayLoad.js](https://www.w3cways.com/1765.html)，支持照片懒加载，提高页面访问速度；
 - Django做后台上传处理，并且支持按需求压缩生成缩略图，节省用户空间和页面访问流量，由[easy_thumbanils](https://pypi.python.org/pypi/easy-thumbnails)支持产生缩略图。
 
-#####用户可以选择登录或者注册，否则5秒后自动关闭当前页面
+##### 用户可以选择登录或者注册，否则5秒后自动关闭当前页面
 
 ![](../images/gallery2.png)
 
