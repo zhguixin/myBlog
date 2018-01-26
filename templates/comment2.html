@@ -1,0 +1,79 @@
+<section id="comment-area">
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-push-1">
+        <hr class="boundary">
+            <h3 style="color: #5694ca;"><b>评论区</b></h3>
+            <ul class="comment-list list-unstyled">
+              {% for comment in comment_list %}
+              <li class="comment-item">
+                <span class="nickname">{{ comment.name }}</span>
+                <time class="submit-date">{{ comment.created |date:"Y-m-d H:i:s"}}</time>
+                <div class="text">
+                  {{ comment.content }}
+                </div>
+              </li>
+              {% empty %}暂无评论
+              {% endfor %}
+            </ul>
+            <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
+            <div class="add-comment" id="vNewComment">
+                <h3 style="color: #5694ca;"><b>留下你的评论呗</b></h3>
+                <form class="form-horizontal" action="{% url 'blog_comment' blog.pk %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <label for="{{ form.name.id_for_label }}" class="control-label">Name <span class="text-theme">*</span></label>
+                            {{ form.name }}
+                            {{ form.name.errors }}
+                        </div>
+                        <div class="col-md-4">
+                            <label for="{{ form.email.id_for_label }}" class="control-label">Email <span class="text-theme">*</span>（仅用于回复通知）</label>
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Website</label>
+                            <input type="url" class="form-control" id="website">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="{{ form.content.id_for_label }}" class="control-label">Comment <span class="text-theme">*</span></label>
+                            {{ form.content }}
+                            {{ form.content.errors }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-theme">Post Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+$(document).ready(function () {
+    var displaytoc = function() {
+        var top = document.getElementById('comment-area').getBoundingClientRect().top;
+        // console.log(top);
+        if(top < 200) {
+            $('#toc').hide();
+        } else {
+            $('#toc').show();
+        }
+    }
+    displaytoc();
+    $(window).on('scroll', function () {
+        displaytoc();
+    });
+
+    $('#{{ form.name.id_for_label }}').attr('class','form-control').attr('required','');
+    $('#{{ form.email.id_for_label }}').attr('class','form-control').attr('required','');
+    $('#{{ form.content.id_for_label }}').attr('class','form-control').attr('required','');
+});
+</script>

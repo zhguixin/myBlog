@@ -4,7 +4,7 @@
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="/static/css/article_list.css" />
-<link rel="stylesheet" type="text/css" href="/static/css/comment.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/comment2.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/vs.css" >
 <link rel="dns-prefetch" href="//cdn.mathjax.org" />
 {% endblock css %}
@@ -58,12 +58,13 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
         <hr class="boundary">
         <p> {{blog.abstract}}</p><br>
         <p> {{blog.content|safe}}</p>
-        <hr class="boundary">
+        <hr>
         {% include 'share.html' %}
-        {% include 'comment.html' %}
+        <br>
     </div> <!-- end col -->
-    <div class="col-sm-3">{{blog.toc|safe}}</div>
+    <div id="toc" class="col-sm-3">{{blog.toc|safe}}</div>
     </div> <!-- end row -->
     </div><!-- end container -->
+    {% include 'comment2.html' %}
 
 {% endblock %}

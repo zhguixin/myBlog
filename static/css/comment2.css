@@ -1,0 +1,106 @@
+.btn:active:focus, .btn:focus
+{
+    outline: 0;
+}
+
+.btn, label
+{
+    font-weight: 400;
+}
+
+.comment-list-panel {
+    margin-top: 30px;
+}
+
+.comment-list {
+    margin-top: 15px;
+}
+
+.comment-item:not(:last-child) {
+    border-bottom: 1px #ccc solid;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.comment-item .nickname,
+.comment-item .submit-date {
+    color: #777;
+    font-size: 15px;
+}
+
+.comment-item .nickname:after {
+    content: ' ';
+}
+
+.comment-item .text {
+    padding-top: 5px;
+    font-size: 20px;
+}
+
+.add-comment input {
+    resize: none;
+    overflow: auto;
+    font-size: 18px;
+}
+
+.add-comment textarea {
+    resize: none;
+    overflow: auto;
+    font-size: 20px;
+}
+.add-comment button {
+    background:   #5bb12f;
+    border-color: #5bb12f;
+    color:        #fff;
+}
+
+.add-comment button hover,
+.add-comment button focus {
+    background:   #4e9b2a;
+    border-color: #4e9b2a;
+}
+
+#vcomments {
+    border-top: 1px solid #ccc;
+    padding-top: 30px;
+
+    /*border-bottom: 1px solid #ccc;*/
+    padding-bottom: 30px;
+}
+
+#vNewComment .btn
+{
+    padding:       15px 30px;
+    font-size:     16px;
+    border-radius: 300px;
+}
+
+#vNewComment .btn.btn-outline
+{
+    color:        #fff;
+    border-width: 2px;
+    border-color: #8F8E8E;
+    background:   0 0;
+}
+
+#vNewComment .btn.btn-outline:focus, #vNewComment .btn.btn-outline:hover
+{
+    border-color: #fff;
+}
+
+#vNewComment .btn-block
+{
+    padding-left:  12px;
+    padding-right: 12px;
+}
+
+#vNewComment .btn:active
+{
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .1);
+    box-shadow:         inset 0 3px 5px rgba(0, 0, 0, .1);
+}
+
+.errorlist {
+    color:red;
+    font-style: italic;
+}

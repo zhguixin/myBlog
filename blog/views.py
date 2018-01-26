@@ -81,12 +81,20 @@ def blog_comment(request, blog_pk):
             cleaned_data['blog'] = blog
             Comment.objects.create(**cleaned_data)
             return redirect(blog)
-    else:
-        comment_list = blog.comment_set.all()
-        context = {'blog': blog,
-           'form': form,
-           'comment_list': comment_list
-           }
-        return render(request, 'detail.html', context=context)
+        else:
+            comment_list = blog.comment_set.all()
+            md = markdown.Markdown(extensions=[
+                             'markdown.extensions.extra',
+                             'markdown.extensions.codehilite', # codehilite 是语法高亮拓展
+                             'markdown.extensions.toc', #  toc 则允许我们自动生成目录
+                             TocExtension(slugify=slugify),
+                          ])
+            blog.content = md.convert(blog.content)
+            blog.toc = md.toc
+            context = {'blog': blog,
+               'form': form,
+               'comment_list': comment_list
+               }
+            return render(request, 'detail.html', context=context)
     # 非post请求，直接重定向到博客详细页
     return redirect(blog)
