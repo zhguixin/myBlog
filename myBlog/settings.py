@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blog',
     'personal',
     'easy_thumbnails',
+    'wechat',
 ]
 
 # 1.10之前，中间件的key为MIDDLEWARE_CLASSES, 1.10之后，为MIDDLEWARE

@@ -20,12 +20,12 @@ from django.contrib.auth import urls as auth_urls
 from django.conf.urls.static import static
 from django.conf import settings
 from personal import urls as self_urls
+from wechat import urls as wechat_urls
 from blog import views
 from blog import feeds
 
 '''
 python manage.py createsuperuser
-创建管理员用户:zhguixin Z-gx1991
 '''
 
 '''
@@ -49,4 +49,5 @@ urlpatterns = [
     # 将 auth 应用中的 urls 模块包含进来,默认的登录视图函数渲染的是 registration/login.html 模板
     url(r'^users/', include(auth_urls)),
     url(r'^users/', include(self_urls, namespace='users')),
+    url(r'^wechat/', include(wechat_urls, namespace='wechat')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
