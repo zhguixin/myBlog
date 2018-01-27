@@ -10,8 +10,7 @@ from handler import handler
 # Create your views here.
 
 
-# TOKEN = '***************'
-TOKEN = 'zhguixin_and_jianggh_1991'
+TOKEN = '***************'
 
 # csrf_exempt 标记是为了取消django自带的csrf标记
 @csrf_exempt
@@ -21,7 +20,6 @@ def wechat(request):
     微信验证的消息是以GET方式获得的
     平时的收发则以POST的方式
     '''
-    print 'this is wwechat!!!'
     if request.method == 'GET':
         # 我们来获取微信给我们发送的验证消息
         signature = request.GET.get('signature', None)
@@ -34,7 +32,7 @@ def wechat(request):
         # 将三个参数字符串拼接成一个字符串进行sha1加密
         # 获得加密后的字符串可与signature对比，标识该请求来源于微信 
         tmp_list = [token, timestamp, nonce]
-        print tmp_list
+        print tmp_list,signature
         tmp_list.sort()
         hashstr = "%s%s%s" % tuple(tmp_list)
         hashstr = hashlib.sha1(hashstr.encode('utf-8')).hexdigest()
@@ -43,8 +41,10 @@ def wechat(request):
         # 如果得出的结果和微信服务器发来的相同，则将echostr返回去
         # 就能成功对接了
         if hashstr == signature:
+            print 'success'
             return HttpResponse(echostr)
         else:
+            print 'failed'
             return HttpResponse('wx_index')
 
     if request.method == 'POST':
@@ -54,7 +54,7 @@ def wechat(request):
         data = smart_str(request.body)
         xml = etree.fromstring(data)
 
-        # 在控制台输出一下挑调试信息
+        # 在控制台输出一下调试信息
         print('**********收到的XML***********\n')
         print(data)
 
