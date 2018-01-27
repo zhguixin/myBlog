@@ -55,7 +55,6 @@
     </div>
 </div>
 </section>
-
 <script>
 $(document).ready(function () {
     var displaytoc = function() {
@@ -75,5 +74,10 @@ $(document).ready(function () {
     $('#{{ form.name.id_for_label }}').attr('class','form-control').attr('required','');
     $('#{{ form.email.id_for_label }}').attr('class','form-control').attr('required','');
     $('#{{ form.content.id_for_label }}').attr('class','form-control').attr('required','');
+
+    var result = {{ result|safe }};
+    if (result == 'failed') {
+        location.hash='vNewComment';
+    }
 });
 </script>

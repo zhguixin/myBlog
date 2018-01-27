@@ -4,6 +4,7 @@ import markdown
 from django.utils.text import slugify
 from markdown.extensions.toc import TocExtension
 from django.shortcuts import render, get_object_or_404, redirect
+import json
 from .models import *
 from .forms import CommentForm
 
@@ -36,8 +37,9 @@ def detail(request, pk):
     comment_list = blog.comment_set.all()
     # 将博客、表单、评论作为模板变量提供给 detail.html 模板以供渲染
     context = {'blog': blog,
-           'form': form,
-           'comment_list': comment_list
+            'form': form,
+           'comment_list': comment_list,
+           'result': json.dumps('')
            }
     return render(request, 'detail.html', context=context)
 
@@ -80,7 +82,7 @@ def blog_comment(request, blog_pk):
             cleaned_data = form.cleaned_data
             cleaned_data['blog'] = blog
             Comment.objects.create(**cleaned_data)
-            return redirect(blog)
+            return redirect('/post/' + blog_pk + '/#comment-area')
         else:
             comment_list = blog.comment_set.all()
             md = markdown.Markdown(extensions=[
@@ -93,7 +95,8 @@ def blog_comment(request, blog_pk):
             blog.toc = md.toc
             context = {'blog': blog,
                'form': form,
-               'comment_list': comment_list
+               'comment_list': comment_list,
+               'result': json.dumps('failed') # 传递数据到javascript
                }
             return render(request, 'detail.html', context=context)
     # 非post请求，直接重定向到博客详细页
