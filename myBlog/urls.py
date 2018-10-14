@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from personal import urls as self_urls
 from wechat import urls as wechat_urls
+from blogapi import urls as blog_api_urls
 from blog import views
 from blog import feeds
 
@@ -50,4 +51,5 @@ urlpatterns = [
     url(r'^users/', include(auth_urls)),
     url(r'^users/', include(self_urls, namespace='users')),
     url(r'^wechat/', include(wechat_urls, namespace='wechat')),
+    url(r'^api/', include(blog_api_urls, namespace='api')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
